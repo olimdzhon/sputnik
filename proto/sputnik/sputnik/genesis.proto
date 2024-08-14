@@ -1,0 +1,17 @@
+syntax = "proto3";
+package sputnik.sputnik;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "sputnik/sputnik/params.proto";
+
+option go_package = "github.com/olimdzhon/sputnik/x/sputnik/types";
+
+// GenesisState defines the sputnik module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
