@@ -1,22 +1,27 @@
 version: 1
 validation: sovereign
-accounts: 
-- name: alice
-  coins:
-  - 20000token
-  - 200000000stake
-- name: bob
-  coins:
-  - 10000token
-  - 100000000stake
+accounts:
+  - name: alice
+    coins:
+      - 200sputnik
+      - 200000000usputnik
+  - name: bob
+    coins:
+      - 100sputnik
+      - 100000000usputnik
 client:
   openapi:
     path: docs/static/openapi.yml
 faucet:
   name: bob
   coins:
-  - 5token
-  - 100000stake
+    - 1sputnik
+    - 1000000usputnik
 validators:
-- name: alice
-  bonded: 100000000stake
+  - name: alice
+    bonded: 100000000usputnik
+genesis:
+  app_state:
+    staking:
+      params:
+        bond_denom: "usputnik"
