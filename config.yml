@@ -15,8 +15,8 @@ client:
 faucet:
   name: bob
   coins:
-    - 1sputnik
-    - 1000000usputnik
+    - 5sputnik
+    - 100000usputnik
 validators:
   - name: alice
     bonded: 1000000000usputnik
