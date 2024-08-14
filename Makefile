@@ -77,7 +77,7 @@ install: go.sum
 	go install -mod=readonly $(BUILD_FLAGS) ./cmd/sputnikd
 
 build:
-	go build $(BUILD_FLAGS) -o $(GOBIN)/sputnikd ./cmd/sputnikd
+	go build $(BUILD_FLAGS) -o $(HOME)/go/bin/sputnikd ./cmd/sputnikd
 
 $(BUILDDIR)/:
 	mkdir -p $(BUILDDIR)/
