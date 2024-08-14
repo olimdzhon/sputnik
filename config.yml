@@ -3,8 +3,8 @@ validation: sovereign
 accounts:
   - name: alice
     coins:
-      - 200sputnik
-      - 200000000usputnik
+      - 20000sputnik
+      - 20000000000usputnik
   - name: bob
     coins:
       - 100sputnik
@@ -19,7 +19,7 @@ faucet:
     - 1000000usputnik
 validators:
   - name: alice
-    bonded: 100000000usputnik
+    bonded: 1000000000usputnik
 genesis:
   app_state:
     staking:
