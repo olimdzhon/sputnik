@@ -3,44 +3,20 @@ validation: sovereign
 accounts:
   - name: alice
     coins:
-      - 20000sputnik
-      - 20000000000usputnik
+      - 20000token
+      - 200000000stake
   - name: bob
     coins:
-      - 100sputnik
-      - 100000000usputnik
+      - 10000token
+      - 100000000stake
 client:
   openapi:
     path: docs/static/openapi.yml
 faucet:
   name: bob
   coins:
-    - 5sputnik
-    - 100000usputnik
+    - 5token
+    - 100000stake
 validators:
   - name: alice
-    bonded: 1000000000usputnik
-genesis:
-  app_state:
-    staking:
-      params:
-        bond_denom: "usputnik"
-    crisis:
-      constant_fee:
-        denom: "usputnik"
-        amount: "1000"
-    mint:
-      params:
-        mint_denom: "usputnik"
-    gov:
-      deposit_params:
-        min_deposit:
-          - denom: "usputnik"
-            amount: "10000000"
-      params:
-        expedited_min_deposit:
-          - denom: "usputnik"
-            amount: "50000000"
-        min_deposit:
-          - denom: "usputnik"
-            amount: "10000000"
+    bonded: 100000000stake
