@@ -37,3 +37,10 @@ genesis:
         min_deposit:
           - denom: "usputnik"
             amount: "10000000"
+      params:
+        expedited_min_deposit:
+          - denom: "usputnik"
+            amount: "50000000"
+        min_deposit:
+          - denom: "usputnik"
+            amount: "10000000"
