@@ -25,3 +25,15 @@ genesis:
     staking:
       params:
         bond_denom: "usputnik"
+    crisis:
+      constant_fee:
+        denom: "usputnik"
+        amount: "1000"
+    mint:
+      params:
+        mint_denom: "usputnik"
+    gov:
+      deposit_params:
+        min_deposit:
+          - denom: "usputnik"
+            amount: "10000000"
