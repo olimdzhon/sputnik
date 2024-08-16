@@ -3,8 +3,6 @@ validation: sovereign
 accounts:
   - name: alice
     coins: ["20000sputnik", "20000000000usputnik"]
-  - name: bob
-    coins: ["10000sputnik", "10000000000usputnik"]
 client:
   openapi:
     path: docs/static/openapi.yml
@@ -16,22 +14,3 @@ genesis:
     staking:
       params:
         bond_denom: "usputnik"
-    crisis:
-      constant_fee:
-        denom: "usputnik"
-        amount: "1000"
-    mint:
-      params:
-        mint_denom: "usputnik"
-    gov:
-      deposit_params:
-        min_deposit:
-          - denom: "usputnik"
-            amount: "10000000"
-      params:
-        expedited_min_deposit:
-          - denom: "usputnik"
-            amount: "50000000"
-        min_deposit:
-          - denom: "usputnik"
-            amount: "10000000"
