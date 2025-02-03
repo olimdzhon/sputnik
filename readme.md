@@ -6,7 +6,7 @@ Sputnik network Blockchain Environment
 
 ```
 go: go version go1.22.9 linux/amd64
-name: achilles
+name: sputnik
 ```
 
 ## Prerequisites
@@ -81,7 +81,7 @@ sputnikd init "<moniker-name>" --chain-id dvs-4.4
 ### Set minimum-gas-prices = "" in app.toml to minimum-gas-prices = "0.25usignal"
 
 ```
-nano ~/.achilles/config/app.toml
+nano ~/.sputnik/config/app.toml
 ```
 
 ### Generate keys
