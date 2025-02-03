@@ -1,51 +1,156 @@
 # sputnik
-**sputnik** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
-## Get started
+Sputnik network Blockchain Environment
 
-```
-ignite chain serve
-```
-
-`serve` command installs dependencies, builds, initializes, and starts your blockchain in development.
-
-### Configure
-
-Your blockchain in development can be configured with `config.yml`. To learn more, see the [Ignite CLI docs](https://docs.ignite.com).
-
-### Web Frontend
-
-Additionally, Ignite CLI offers both Vue and React options for frontend scaffolding:
-
-For a Vue frontend, use: `ignite scaffold vue`
-For a React frontend, use: `ignite scaffold react`
-These commands can be run within your scaffolded blockchain project. 
-
-
-For more information see the [monorepo for Ignite front-end development](https://github.com/ignite/web).
-
-## Release
-To release a new version of your blockchain, create and push a new tag with `v` prefix. A new draft release with the configured targets will be created.
+## Sputnik app-chain binaries installation (sputnikd)
 
 ```
-git tag v0.1
-git push origin v0.1
+go: go version go1.22.9 linux/amd64
+name: achilles
 ```
 
-After a draft release is created, make your final changes from the release page and publish it.
+## Prerequisites
 
-### Install
-To install the latest version of your blockchain node's binary, execute the following command on your machine:
+### Install go
 
 ```
-curl https://get.ignite.com/olimdzhon/sputnik@latest! | sudo bash
+sudo rm -rvf /usr/local/go/
+wget https://golang.org/dl/go1.22.4.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.22.4.linux-amd64.tar.gz
+rm go1.22.4.linux-amd64.tar.gz
 ```
-`olimdzhon/sputnik` should match the `username` and `repo_name` of the Github repository to which the source code was pushed. Learn more about [the install process](https://github.com/allinbits/starport-installer).
 
-## Learn more
+### Put PATH to ~/.profile
 
-- [Ignite CLI](https://ignite.com/cli)
-- [Tutorials](https://docs.ignite.com/guide)
-- [Ignite CLI docs](https://docs.ignite.com)
-- [Cosmos SDK docs](https://docs.cosmos.network)
-- [Developer Chat](https://discord.gg/ignite)
+```
+nano .profile
+```
+
+```
+export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
+```
+
+### Use source ~/.profile
+
+```
+source .profile
+```
+
+### Check go
+
+```
+go version
+```
+
+### Install packages
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt install mc htop screen git gcc make
+```
+
+## Binary building
+
+### Clone source from repo
+
+```
+git clone https://github.com/olimdzhon/sputnik.git
+```
+
+### Open source directory
+
+```
+cd sputnik
+```
+
+### Build binary
+
+```
+make install
+```
+
+## Network launch
+
+### Init
+
+```bash:
+sputnikd init "<moniker-name>" --chain-id dvs-4.4
+```
+
+### Set minimum-gas-prices = "" in app.toml to minimum-gas-prices = "0.25usignal"
+
+```
+nano ~/.achilles/config/app.toml
+```
+
+### Generate keys
+
+```bash:
+# To create new keypair - make sure you save the mnemonics!
+sputnikd keys add <key-name>
+```
+
+or
+
+```
+# Restore existing odin wallet with mnemonic seed phrase.
+# You will be prompted to enter mnemonic seed.
+sputnikd keys add <key-name> --recover
+```
+
+or
+
+```
+# Add keys using ledger
+sputnikd keys show <key-name> --ledger
+```
+
+Check your key:
+
+```
+# Query the keystore for your public address
+sputnikd keys show <key-name> -a
+```
+
+### Create account to genesis
+
+```
+sputnikd genesis add-genesis-account <key-name> 10000000usignal
+```
+
+### Create GenTX
+
+```
+# Create the gentx.
+# Note, your gentx will be rejected if you use any amount greater than 1000000usignal.
+# Make sure that all participants built their gentx files without typos.
+
+sputnikd genesis gentx <key-name> 1000000usignal \
+  --pubkey=$(sputnikd tendermint show-validator) \
+  --chain-id=test-core-1 \
+  --moniker="my-moniker" \
+  --commission-rate="0.10" \
+  --commission-max-rate="0.20" \
+  --commission-max-change-rate="0.01"
+```
+
+### Add all accounts to genesis
+
+```
+# Add account addresses of all participants before generating genesis.
+# (whose Gentx files you're using to generate genesis)
+sputnikd genesis add-genesis-account <account-address> 1000000usignal
+```
+
+### Generate genesis
+
+```
+sputnikd genesis collect-gentxs
+```
+
+### Start network
+
+```
+sputnikd start
+```
