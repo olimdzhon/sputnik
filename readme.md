@@ -149,8 +149,34 @@ sputnikd genesis add-genesis-account <account-address> 1000000usignal
 sputnikd genesis collect-gentxs
 ```
 
+### Create service
+
+```
+sudo tee /etc/systemd/system/sputnik.service > /dev/null << EOF
+[Unit]
+Description=Sputnik app chain daemon
+After=network-online.target
+[Service]
+Environment="DAEMON_NAME=sputnikd"
+Environment="DAEMON_HOME=${HOME}/.sputnik"
+Environment="DAEMON_RESTART_AFTER_UPGRADE=true"
+Environment="DAEMON_ALLOW_DOWNLOAD_BINARIES=false"
+Environment="DAEMON_LOG_BUFFER_SIZE=512"
+Environment="UNSAFE_SKIP_BACKUP=true"
+User=$USER
+ExecStart=${HOME}/go/bin/sputnikd start
+Restart=always
+RestartSec=3
+LimitNOFILE=infinity
+LimitNPROC=infinity
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
 ### Start network
 
 ```
-sputnikd start
+sudo systemctl enable sputnik
+sudo systemctl restart sputnik && sudo journalctl -u sputnik -f --output cat
 ```
