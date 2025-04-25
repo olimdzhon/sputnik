@@ -47,7 +47,7 @@ go version
 ```
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt install mc htop screen git gcc make
+sudo apt install mc btop nano screen git make build-essential
 ```
 
 ## Binary building
