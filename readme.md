@@ -174,9 +174,21 @@ WantedBy=multi-user.target
 EOF
 ```
 
-### Start network
+### Start node
 
 ```
 sudo systemctl enable sputnik
 sudo systemctl restart sputnik && sudo journalctl -u sputnik -f --output cat
+```
+
+### Stop node
+
+```
+sudo systemctl stop sputnik
+```
+
+### Clear database
+
+```
+sputnikd tendermint unsafe-reset-all --keep-addr-book
 ```
