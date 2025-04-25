@@ -81,7 +81,7 @@ sputnikd init "<moniker-name>" --chain-id dvs-4.5
 ### Set minimum-gas-prices = "" in app.toml to minimum-gas-prices = "0.25usignal"
 
 ```
-nano ~/.sputnik/config/app.toml
+sed -i -e "s|^minimum-gas-prices *=.*|minimum-gas-prices = \"0.25usignal\"|" $HOME/.sputnik/config/app.toml
 ```
 
 ### Generate keys
