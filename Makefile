@@ -13,7 +13,7 @@ ifeq (,$(VERSION))
     VERSION := $(BRANCH)
   endif
 
-  ifeq ('main',$(VERSION))
+  ifeq (main,$(VERSION))
     VERSION := v1.0.0
   endif
 endif
