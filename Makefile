@@ -14,7 +14,7 @@ ifeq (,$(VERSION))
   endif
 
   ifeq (main,$(VERSION))
-    VERSION := 1.0.0
+    VERSION := v1.0.0
   endif
 endif
 
