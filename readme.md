@@ -75,7 +75,7 @@ make install
 ### Init
 
 ```bash:
-sputnikd init "<moniker-name>" --chain-id dvs-4.5
+sputnikd init "<moniker-name>" --chain-id dvs-4.6
 ```
 
 ### Set minimum-gas-prices = "" in app.toml to minimum-gas-prices = "0.25usignal"
