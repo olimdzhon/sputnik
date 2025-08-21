@@ -75,7 +75,7 @@ make install
 ### Init
 
 ```bash:
-sputnikd init "<moniker-name>" --chain-id dvs-4.6
+sputnikd init "<moniker-name>" --chain-id dvs-4.7
 ```
 
 ### Set minimum-gas-prices = "" in app.toml to minimum-gas-prices = "0.25usignal"
@@ -128,7 +128,7 @@ sputnikd genesis add-genesis-account <key-name> 10000000usignal
 
 sputnikd genesis gentx <key-name> 1000000usignal \
   --pubkey=$(sputnikd tendermint show-validator) \
-  --chain-id=dvs-4.6 \
+  --chain-id=dvs-4.7 \
   --moniker="my-moniker" \
   --commission-rate="0.10" \
   --commission-max-rate="0.20" \
